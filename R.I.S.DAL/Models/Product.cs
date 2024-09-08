@@ -13,18 +13,20 @@ namespace R.I.S.DAL.Models
     {
         [Required]
         [MinLength(3)]
-        string Name { get; set; }
+        public string Name { get; set; }
         [Required]
-        int Price { get; set; }
+        public int Price { get; set; }
         [Required]
-        int Quantity { get; set; }
+        public int Quantity { get; set; }
         [Required]
-        Guid Product_type_id { get; set; }
+        public Guid CategoryId { get; set; }
         [Required]
-        Guid Brand_id { get; set; }
+        public Guid BrandId { get; set; }
         [NotMapped]
-        Category Category { get; set; }
+        public Category Category { get; set; }
         [NotMapped]
-        Brand Brand { get; set; }
+        public Brand Brand { get; set; }
+        [NotMapped]
+        public ICollection<Review> ReviewList { get; set; }
     }
 }

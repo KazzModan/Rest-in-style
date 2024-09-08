@@ -13,19 +13,19 @@ namespace R.I.S.DAL.Models
     {
         [Required]
         [MinLength(3)]
-        string Head { get; set; }
+        public string Head { get; set; }
         [Required]
         [MinLength(10)]
-        string Body { get; set; }
+        public string Body { get; set; }
         [Required]
-        int Rating { get; set; }
+        public int Rating { get; set; }
         [Required]
-        Guid Product_type_id { get; set; }
+        public Guid UserId { get; set; }
         [Required]
-        Guid User_id { get; set; }
+        public Guid ProductId { get; set; }
         [NotMapped]
-        Category Category { get; set; }
+        public Product Product { get; set; }
         [NotMapped]
-        Brand Brand { get; set; }
+        public User User { get; set; }
     }
 }

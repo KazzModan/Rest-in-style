@@ -15,6 +15,7 @@ namespace R.I.S.DAL.Models
         [MinLength(4)]
         [MaxLength(30)]
         public string Name { get; set; }
-       
+        [NotMapped]
+        public ICollection<Product> ProductList { get; set; }
     }
 }
