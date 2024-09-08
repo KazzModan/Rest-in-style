@@ -32,7 +32,11 @@
         "frameworks": {
           "net8.0": {
             "targetAlias": "net8.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "D:\\R.I.S\\R.I.S\\R.I.S.DAL\\R.I.S.DAL.csproj": {
+                "projectPath": "D:\\R.I.S\\R.I.S\\R.I.S.DAL\\R.I.S.DAL.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -49,6 +53,12 @@
       "frameworks": {
         "net8.0": {
           "targetAlias": "net8.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
