@@ -10,8 +10,8 @@ namespace R.I.S.BLL.Services.Abstraction
     public interface ICategoryService
     {
         Task<ICollection<CategoryDTO>> GetAllCategorys();
-        Task<CategoryDTO> GetCategoryById(int id);
-        Task DeleteCategory(int id);
+        Task<CategoryDTO> GetCategoryById(Guid id);
+        Task DeleteCategory(Guid id);
         Task AddCategory(CategoryDTO Category);
         Task UpdateCategory(CategoryDTO Category);
     }

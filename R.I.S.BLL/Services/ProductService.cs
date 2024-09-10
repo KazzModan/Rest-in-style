@@ -30,7 +30,7 @@ namespace R.I.S.BLL.Services
         {
             await _ProductRepository.Create(_mapper.Map<Product>(Product)).ConfigureAwait(false);
         }
-        public async Task DeleteProduct(int id)
+        public async Task DeleteProduct(Guid id)
         {
             await _ProductRepository.Delete(id).ConfigureAwait(false);
         }
@@ -41,7 +41,7 @@ namespace R.I.S.BLL.Services
 
             return ProductDTOs;
         }
-        public async Task<ProductDTO> GetProductById(int id)
+        public async Task<ProductDTO> GetProductById(Guid id)
         {
             var Product = await _ProductRepository.GetById(id).ConfigureAwait(false);
             var dto = _mapper.Map<ProductDTO>(Product);

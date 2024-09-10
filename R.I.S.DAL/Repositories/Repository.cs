@@ -28,7 +28,7 @@ namespace R.I.S.DAL.Repositories
             context.Set<T>().Add(entity);
             await context.SaveChangesAsync().ConfigureAwait(false);
         }
-        public async Task<T> GetById(int id)
+        public async Task<T> GetById(Guid id)
         {
             return await context.Set<T>().FindAsync(id);
         }
@@ -38,7 +38,7 @@ namespace R.I.S.DAL.Repositories
             context.Entry(entity).State = EntityState.Modified;
             await context.SaveChangesAsync().ConfigureAwait(false);
         }
-        public async Task Delete(int id)
+        public async Task Delete(Guid id)
         {
             T entity = await context.Set<T>().FindAsync(id).ConfigureAwait(false);
             context.Remove(entity);

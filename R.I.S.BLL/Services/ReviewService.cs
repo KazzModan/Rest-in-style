@@ -30,7 +30,7 @@ namespace R.I.S.BLL.Services
         {
             await _ReviewRepository.Create(_mapper.Map<Review>(Review)).ConfigureAwait(false);
         }
-        public async Task DeleteReview(int id)
+        public async Task DeleteReview(Guid id)
         {
             await _ReviewRepository.Delete(id).ConfigureAwait(false);
         }
@@ -41,7 +41,7 @@ namespace R.I.S.BLL.Services
 
             return ReviewDTOs;
         }
-        public async Task<ReviewDTO> GetReviewById(int id)
+        public async Task<ReviewDTO> GetReviewById(Guid id)
         {
             var Review = await _ReviewRepository.GetById(id).ConfigureAwait(false);
             var dto = _mapper.Map<ReviewDTO>(Review);

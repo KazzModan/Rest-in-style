@@ -10,8 +10,8 @@ namespace R.I.S.BLL.Services.Abstraction
     public interface IBrandService
     {
         Task<ICollection<BrandDTO>> GetAllBrands();
-        Task<BrandDTO> GetBrandById(int id);
-        Task DeleteBrand(int id);
+        Task<BrandDTO> GetBrandById(Guid id);
+        Task DeleteBrand(Guid id);
         Task AddBrand(BrandDTO Brand);
         Task UpdateBrand(BrandDTO Brand);
     }

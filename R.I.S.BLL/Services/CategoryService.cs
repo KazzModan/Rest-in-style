@@ -30,7 +30,7 @@ namespace R.I.S.BLL.Services
         {
             await _CategoryRepository.Create(_mapper.Map<Category>(Category)).ConfigureAwait(false);
         }
-        public async Task DeleteCategory(int id)
+        public async Task DeleteCategory(Guid id)
         {
             await _CategoryRepository.Delete(id).ConfigureAwait(false);
         }
@@ -41,7 +41,7 @@ namespace R.I.S.BLL.Services
 
             return CategoryDTOs;
         }
-        public async Task<CategoryDTO> GetCategoryById(int id)
+        public async Task<CategoryDTO> GetCategoryById(Guid id)
         {
             var Category = await _CategoryRepository.GetById(id).ConfigureAwait(false);
             var dto = _mapper.Map<CategoryDTO>(Category);

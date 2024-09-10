@@ -10,8 +10,8 @@ namespace R.I.S.BLL.Services.Abstraction
     public interface IReviewService
     {
         Task<ICollection<ReviewDTO>> GetAllReviews();
-        Task<ReviewDTO> GetReviewById(int id);
-        Task DeleteReview(int id);
+        Task<ReviewDTO> GetReviewById(Guid id);
+        Task DeleteReview(Guid id);
         Task AddReview(ReviewDTO Review);
         Task UpdateReview(ReviewDTO Review);
     }

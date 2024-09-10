@@ -30,7 +30,7 @@ namespace R.I.S.BLL.Services
         {
             await _UserRepository.Create(_mapper.Map<User>(User)).ConfigureAwait(false);
         }
-        public async Task DeleteUser(int id)
+        public async Task DeleteUser(Guid id)
         {
             await _UserRepository.Delete(id).ConfigureAwait(false);
         }
@@ -41,7 +41,7 @@ namespace R.I.S.BLL.Services
 
             return UserDTOs;
         }
-        public async Task<UserDTO> GetUserById(int id)
+        public async Task<UserDTO> GetUserById(Guid id)
         {
             var User = await _UserRepository.GetById(id).ConfigureAwait(false);
             var dto = _mapper.Map<UserDTO>(User);

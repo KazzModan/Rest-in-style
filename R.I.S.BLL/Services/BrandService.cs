@@ -30,7 +30,7 @@ namespace R.I.S.BLL.Services
         {
             await _BrandRepository.Create(_mapper.Map<Brand>(Brand)).ConfigureAwait(false);
         }
-        public async Task DeleteBrand(int id)
+        public async Task DeleteBrand(Guid id)
         {
             await _BrandRepository.Delete(id).ConfigureAwait(false);
         }
@@ -41,7 +41,7 @@ namespace R.I.S.BLL.Services
 
             return BrandDTOs;
         }
-        public async Task<BrandDTO> GetBrandById(int id)
+        public async Task<BrandDTO> GetBrandById(Guid id)
         {
             var Brand = await _BrandRepository.GetById(id).ConfigureAwait(false);
             var dto = _mapper.Map<BrandDTO>(Brand);

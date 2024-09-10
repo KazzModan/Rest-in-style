@@ -10,8 +10,8 @@ namespace R.I.S.BLL.Services.Abstraction
     public interface IProductService
     {
         Task<ICollection<ProductDTO>> GetAllProducts();
-        Task<ProductDTO> GetProductById(int id);
-        Task DeleteProduct(int id);
+        Task<ProductDTO> GetProductById(Guid id);
+        Task DeleteProduct(Guid id);
         Task AddProduct(ProductDTO Product);
         Task UpdateProduct(ProductDTO Product);
     }
