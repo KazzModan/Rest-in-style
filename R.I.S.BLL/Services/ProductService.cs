@@ -14,42 +14,60 @@ namespace R.I.S.BLL.Services
     public class ProductService : IProductService
 
     {
-        private readonly IRepository<Product> _ProductRepository;
+        private readonly IRepository<Product> _productRepository;
+        private readonly IRepository<Brand> _brandRepository;
+        private readonly IRepository<Category> _categoryRepository;
+
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private bool disposed = false;
 
         public ProductService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _ProductRepository = _unitOfWork.GetRepository<Product>();
+            _productRepository = _unitOfWork.GetRepository<Product>();
+            _brandRepository = _unitOfWork.GetRepository<Brand>();
+            _categoryRepository = _unitOfWork.GetRepository<Category>();
             _mapper = mapper;
         }
 
-        public async Task AddProduct(ProductDTO Product)
+        public async Task AddProduct(ProductDTO product)
         {
-            await _ProductRepository.Create(_mapper.Map<Product>(Product)).ConfigureAwait(false);
+            await _productRepository.Create(_mapper.Map<Product>(product)).ConfigureAwait(false);
         }
         public async Task DeleteProduct(Guid id)
         {
-            await _ProductRepository.Delete(id).ConfigureAwait(false);
+            await _productRepository.Delete(id).ConfigureAwait(false);
         }
         public async Task<ICollection<ProductDTO>> GetAllProducts()
         {
-            var Products = await _ProductRepository.Get().ConfigureAwait(false);
-            var ProductDTOs = _mapper.Map<ICollection<ProductDTO>>(Products);
-
-            return ProductDTOs;
+            var products = await _productRepository.Get().ConfigureAwait(false);
+            var productDTOs = _mapper.Map<ICollection<ProductDTO>>(products);
+            foreach (var product in productDTOs)
+            {
+                var brand = await _brandRepository.GetById(product.BrandId);
+                var category = await _categoryRepository.GetById(product.CategoryId);
+                product.CtName = category.Name;
+                product.BrName = brand.Name;
+            }
+            return productDTOs;
         }
         public async Task<ProductDTO> GetProductById(Guid id)
         {
-            var Product = await _ProductRepository.GetById(id).ConfigureAwait(false);
-            var dto = _mapper.Map<ProductDTO>(Product);
-            return dto;
+            var product = await _productRepository.GetById(id).ConfigureAwait(false);
+            var dto = _mapper.Map<ProductDTO>(product);
+            return await MapInfo(dto);
         }
-        public async Task UpdateProduct(ProductDTO Product)
+        public async Task UpdateProduct(ProductDTO product)
         {
-            await _ProductRepository.Update(_mapper.Map<Product>(Product)).ConfigureAwait(false);
+            await _productRepository.Update(_mapper.Map<Product>(product)).ConfigureAwait(false);
+        }
+        public async Task<ProductDTO> MapInfo(ProductDTO product)
+        {
+            var category = await _categoryRepository.GetById(product.CategoryId).ConfigureAwait(false);
+            var brand = await _brandRepository.GetById(product.BrandId).ConfigureAwait(false);
+            product.CtName = category.Name;
+            product.BrName = brand.Name;
+            return product;
         }
     }
 }

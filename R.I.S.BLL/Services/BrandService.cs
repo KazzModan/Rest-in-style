@@ -14,42 +14,41 @@ namespace R.I.S.BLL.Services
     public class BrandService : IBrandService
 
     {
-        private readonly IRepository<Brand> _BrandRepository;
+        private readonly IRepository<Brand> _brandRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private bool disposed = false;
 
         public BrandService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _BrandRepository = _unitOfWork.GetRepository<Brand>();
+            _brandRepository = _unitOfWork.GetRepository<Brand>();
             _mapper = mapper;
         }
 
-        public async Task AddBrand(BrandDTO Brand)
+        public async Task AddBrand(BrandDTO brand)
         {
-            await _BrandRepository.Create(_mapper.Map<Brand>(Brand)).ConfigureAwait(false);
+            await _brandRepository.Create(_mapper.Map<Brand>(brand)).ConfigureAwait(false);
         }
         public async Task DeleteBrand(Guid id)
         {
-            await _BrandRepository.Delete(id).ConfigureAwait(false);
+            await _brandRepository.Delete(id).ConfigureAwait(false);
         }
         public async Task<ICollection<BrandDTO>> GetAllBrands()
         {
-            var Brands = await _BrandRepository.Get().ConfigureAwait(false);
-            var BrandDTOs = _mapper.Map<ICollection<BrandDTO>>(Brands);
+            var brands = await _brandRepository.Get().ConfigureAwait(false);
+            var brandDTOs = _mapper.Map<ICollection<BrandDTO>>(brands);
 
-            return BrandDTOs;
+            return brandDTOs;
         }
         public async Task<BrandDTO> GetBrandById(Guid id)
         {
-            var Brand = await _BrandRepository.GetById(id).ConfigureAwait(false);
-            var dto = _mapper.Map<BrandDTO>(Brand);
+            var brand = await _brandRepository.GetById(id).ConfigureAwait(false);
+            var dto = _mapper.Map<BrandDTO>(brand);
             return dto;
         }
-        public async Task UpdateBrand(BrandDTO Brand)
+        public async Task UpdateBrand(BrandDTO brand)
         {
-            await _BrandRepository.Update(_mapper.Map<Brand>(Brand)).ConfigureAwait(false);
+            await _brandRepository.Update(_mapper.Map<Brand>(brand)).ConfigureAwait(false);
         }
     }
 }

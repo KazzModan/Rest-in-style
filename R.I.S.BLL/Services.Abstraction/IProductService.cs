@@ -14,5 +14,7 @@ namespace R.I.S.BLL.Services.Abstraction
         Task DeleteProduct(Guid id);
         Task AddProduct(ProductDTO Product);
         Task UpdateProduct(ProductDTO Product);
+        Task<ProductDTO> MapInfo(ProductDTO Product);
+
     }
 }

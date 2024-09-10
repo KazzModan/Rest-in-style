@@ -14,42 +14,41 @@ namespace R.I.S.BLL.Services
     public class CategoryService : ICategoryService
 
     {
-        private readonly IRepository<Category> _CategoryRepository;
+        private readonly IRepository<Category> _categoryRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private bool disposed = false;
 
         public CategoryService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _CategoryRepository = _unitOfWork.GetRepository<Category>();
+            _categoryRepository = _unitOfWork.GetRepository<Category>();
             _mapper = mapper;
         }
 
-        public async Task AddCategory(CategoryDTO Category)
+        public async Task AddCategory(CategoryDTO category)
         {
-            await _CategoryRepository.Create(_mapper.Map<Category>(Category)).ConfigureAwait(false);
+            await _categoryRepository.Create(_mapper.Map<Category>(category)).ConfigureAwait(false);
         }
         public async Task DeleteCategory(Guid id)
         {
-            await _CategoryRepository.Delete(id).ConfigureAwait(false);
+            await _categoryRepository.Delete(id).ConfigureAwait(false);
         }
         public async Task<ICollection<CategoryDTO>> GetAllCategorys()
         {
-            var Categorys = await _CategoryRepository.Get().ConfigureAwait(false);
-            var CategoryDTOs = _mapper.Map<ICollection<CategoryDTO>>(Categorys);
+            var categorys = await _categoryRepository.Get().ConfigureAwait(false);
+            var categoryDTOs = _mapper.Map<ICollection<CategoryDTO>>(categorys);
 
-            return CategoryDTOs;
+            return categoryDTOs;
         }
         public async Task<CategoryDTO> GetCategoryById(Guid id)
         {
-            var Category = await _CategoryRepository.GetById(id).ConfigureAwait(false);
-            var dto = _mapper.Map<CategoryDTO>(Category);
+            var category = await _categoryRepository.GetById(id).ConfigureAwait(false);
+            var dto = _mapper.Map<CategoryDTO>(category);
             return dto;
         }
-        public async Task UpdateCategory(CategoryDTO Category)
+        public async Task UpdateCategory(CategoryDTO category)
         {
-            await _CategoryRepository.Update(_mapper.Map<Category>(Category)).ConfigureAwait(false);
+            await _categoryRepository.Update(_mapper.Map<Category>(category)).ConfigureAwait(false);
         }
     }
 }

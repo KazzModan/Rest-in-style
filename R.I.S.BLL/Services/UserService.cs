@@ -14,42 +14,41 @@ namespace R.I.S.BLL.Services
     public class UserService : IUserService
 
     {
-        private readonly IRepository<User> _UserRepository;
+        private readonly IRepository<User> _userRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private bool disposed = false;
 
         public UserService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _UserRepository = _unitOfWork.GetRepository<User>();
+            _userRepository = _unitOfWork.GetRepository<User>();
             _mapper = mapper;
         }
 
         public async Task AddUser(UserDTO User)
         {
-            await _UserRepository.Create(_mapper.Map<User>(User)).ConfigureAwait(false);
+            await _userRepository.Create(_mapper.Map<User>(User)).ConfigureAwait(false);
         }
         public async Task DeleteUser(Guid id)
         {
-            await _UserRepository.Delete(id).ConfigureAwait(false);
+            await _userRepository.Delete(id).ConfigureAwait(false);
         }
         public async Task<ICollection<UserDTO>> GetAllUsers()
         {
-            var Users = await _UserRepository.Get().ConfigureAwait(false);
-            var UserDTOs = _mapper.Map<ICollection<UserDTO>>(Users);
+            var users = await _userRepository.Get().ConfigureAwait(false);
+            var userDTOs = _mapper.Map<ICollection<UserDTO>>(users);
 
-            return UserDTOs;
+            return userDTOs;
         }
         public async Task<UserDTO> GetUserById(Guid id)
         {
-            var User = await _UserRepository.GetById(id).ConfigureAwait(false);
-            var dto = _mapper.Map<UserDTO>(User);
+            var user = await _userRepository.GetById(id).ConfigureAwait(false);
+            var dto = _mapper.Map<UserDTO>(user);
             return dto;
         }
-        public async Task UpdateUser(UserDTO User)
+        public async Task UpdateUser(UserDTO user)
         {
-            await _UserRepository.Update(_mapper.Map<User>(User)).ConfigureAwait(false);
+            await _userRepository.Update(_mapper.Map<User>(user)).ConfigureAwait(false);
         }
     }
 }

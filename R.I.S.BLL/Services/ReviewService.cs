@@ -14,42 +14,41 @@ namespace R.I.S.BLL.Services
     public class ReviewService : IReviewService
 
     {
-        private readonly IRepository<Review> _ReviewRepository;
+        private readonly IRepository<Review> _reviewRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
-        private bool disposed = false;
 
         public ReviewService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
-            _ReviewRepository = _unitOfWork.GetRepository<Review>();
+            _reviewRepository = _unitOfWork.GetRepository<Review>();
             _mapper = mapper;
         }
 
-        public async Task AddReview(ReviewDTO Review)
+        public async Task AddReview(ReviewDTO review)
         {
-            await _ReviewRepository.Create(_mapper.Map<Review>(Review)).ConfigureAwait(false);
+            await _reviewRepository.Create(_mapper.Map<Review>(review)).ConfigureAwait(false);
         }
         public async Task DeleteReview(Guid id)
         {
-            await _ReviewRepository.Delete(id).ConfigureAwait(false);
+            await _reviewRepository.Delete(id).ConfigureAwait(false);
         }
         public async Task<ICollection<ReviewDTO>> GetAllReviews()
         {
-            var Reviews = await _ReviewRepository.Get().ConfigureAwait(false);
-            var ReviewDTOs = _mapper.Map<ICollection<ReviewDTO>>(Reviews);
+            var reviews = await _reviewRepository.Get().ConfigureAwait(false);
+            var reviewDTOs = _mapper.Map<ICollection<ReviewDTO>>(reviews);
 
-            return ReviewDTOs;
+            return reviewDTOs;
         }
         public async Task<ReviewDTO> GetReviewById(Guid id)
         {
-            var Review = await _ReviewRepository.GetById(id).ConfigureAwait(false);
-            var dto = _mapper.Map<ReviewDTO>(Review);
+            var review = await _reviewRepository.GetById(id).ConfigureAwait(false);
+            var dto = _mapper.Map<ReviewDTO>(review);
             return dto;
         }
-        public async Task UpdateReview(ReviewDTO Review)
+        public async Task UpdateReview(ReviewDTO review)
         {
-            await _ReviewRepository.Update(_mapper.Map<Review>(Review)).ConfigureAwait(false);
+            await _reviewRepository.Update(_mapper.Map<Review>(review)).ConfigureAwait(false);
         }
     }
 }

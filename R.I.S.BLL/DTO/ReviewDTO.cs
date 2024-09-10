@@ -9,6 +9,7 @@ namespace R.I.S.BLL.DTO
 {
     public class ReviewDTO
     {
+        public Guid Id { get; set; }
         public string Head { get; set; }
         public string Body { get; set; }
         public int Rating { get; set; }
