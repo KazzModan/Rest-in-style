@@ -18,6 +18,7 @@ namespace R.I.S.DAL.Models
         public int Price { get; set; }
         [Required]
         public int Quantity { get; set; }
+        public string Photo { get; set; }
         [Required]
         public Guid CategoryId { get; set; }
         [Required]

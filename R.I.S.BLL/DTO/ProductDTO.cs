@@ -12,6 +12,7 @@ namespace R.I.S.BLL.DTO
         public string Name { get; set; }
         public int Price { get; set; }
         public int Quantity { get; set; }
+        public string Photo { get; set; }
         public Guid CategoryId { get; set; }
         public Guid BrandId { get; set; }
         public string BrName { get; set; }
