@@ -1,7 +1,13 @@
-import {Card} from 'react-bootstrap'
+import React, {useState} from 'react';
+import './Сard.scss'
+const Card = ({image, onClick}) => {
 
-function c () {
-return ;
-}
+    return (
+        <div className="component-wrapper rounded-5" onClick={onClick} >
+            <div className="content rounded-4" style={{ backgroundImage: `url(${image})` }} >
+            </div>
+        </div>
+    );
+};
 
 export default Card;
