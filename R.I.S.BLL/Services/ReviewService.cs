@@ -24,7 +24,6 @@ namespace R.I.S.BLL.Services
             _reviewRepository = _unitOfWork.GetRepository<Review>();
             _mapper = mapper;
         }
-
         public async Task AddReview(ReviewDTO review)
         {
             await _reviewRepository.Create(_mapper.Map<Review>(review)).ConfigureAwait(false);

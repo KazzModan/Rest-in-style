@@ -24,7 +24,6 @@ namespace R.I.S.BLL.Services
             _brandRepository = _unitOfWork.GetRepository<Brand>();
             _mapper = mapper;
         }
-
         public async Task AddBrand(BrandDTO brand)
         {
             await _brandRepository.Create(_mapper.Map<Brand>(brand)).ConfigureAwait(false);

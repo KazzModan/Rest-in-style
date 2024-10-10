@@ -9,6 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using R.I.S.DAL.Models;
 using R.I.S.BLL.DTO;
+using System.Linq.Expressions;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace R.I.S.BLL.Services
 {
     public class ProductService : IProductService
@@ -38,18 +42,26 @@ namespace R.I.S.BLL.Services
         {
             await _productRepository.Delete(id).ConfigureAwait(false);
         }
-        public async Task<ICollection<ProductDTO>> GetAllProducts()
+        public async Task<ICollection<ProductDTO>> GetAllProducts(Expression<Func<ProductDTO, bool>> filter = null)
         {
             var products = await _productRepository.Get().ConfigureAwait(false);
             var productDTOs = _mapper.Map<ICollection<ProductDTO>>(products);
-            foreach (var product in productDTOs)
+            if (filter == null)
             {
-                var brand = await _brandRepository.GetById(product.BrandId);
-                var category = await _categoryRepository.GetById(product.CategoryId);
-                product.CtName = category.Name;
-                product.BrName = brand.Name;
+                foreach (var product in productDTOs)
+                {
+                    await MapInfo(product);
+                }
+                return productDTOs;
             }
-            return productDTOs;
+
+            var filteredProducts = productDTOs.Where(filter.Compile()).ToList();
+            foreach (var product in filteredProducts)
+            {
+                await MapInfo(product);
+            }
+
+            return filteredProducts;
         }
         public async Task<ProductDTO> GetProductById(Guid id)
         {
@@ -57,6 +69,7 @@ namespace R.I.S.BLL.Services
             var dto = _mapper.Map<ProductDTO>(product);
             return await MapInfo(dto);
         }
+       
         public async Task UpdateProduct(ProductDTO product)
         {
             await _productRepository.Update(_mapper.Map<Product>(product)).ConfigureAwait(false);

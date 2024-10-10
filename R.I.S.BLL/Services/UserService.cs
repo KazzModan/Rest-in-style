@@ -24,7 +24,6 @@ namespace R.I.S.BLL.Services
             _userRepository = _unitOfWork.GetRepository<User>();
             _mapper = mapper;
         }
-
         public async Task AddUser(UserDTO User)
         {
             await _userRepository.Create(_mapper.Map<User>(User)).ConfigureAwait(false);

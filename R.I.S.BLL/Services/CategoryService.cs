@@ -24,7 +24,6 @@ namespace R.I.S.BLL.Services
             _categoryRepository = _unitOfWork.GetRepository<Category>();
             _mapper = mapper;
         }
-
         public async Task AddCategory(CategoryDTO category)
         {
             await _categoryRepository.Create(_mapper.Map<Category>(category)).ConfigureAwait(false);
@@ -44,6 +43,7 @@ namespace R.I.S.BLL.Services
         {
             var category = await _categoryRepository.GetById(id).ConfigureAwait(false);
             var dto = _mapper.Map<CategoryDTO>(category);
+
             return dto;
         }
         public async Task UpdateCategory(CategoryDTO category)
