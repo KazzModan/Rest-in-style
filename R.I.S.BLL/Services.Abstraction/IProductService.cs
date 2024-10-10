@@ -1,4 +1,5 @@
 ﻿using R.I.S.BLL.DTO;
+using R.I.S.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace R.I.S.BLL.Services.Abstraction
 {
     public interface IProductService
     {
-        Task<ICollection<ProductDTO>> GetAllProducts(Expression<Func<ProductDTO, bool>> filter = null);
+        Task<ICollection<ProductDTO>> GetAllProducts(Expression<Func<Product, bool>> filter = null);
         Task<ProductDTO> GetProductById(Guid id);
         Task DeleteProduct(Guid id);
         Task AddProduct(ProductDTO Product);

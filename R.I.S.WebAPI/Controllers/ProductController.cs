@@ -26,12 +26,25 @@ namespace R.I.S.WebAPI.Controllers
                 return StatusCode(500, "An error occurred while processing your request.");
             }
         }
-        [HttpGet("{id}")]
+        [HttpGet("{id:guid}")]
         public async Task<IActionResult> GetProductByID(Guid id)
         {
             try
             {
                 var Product = await _ProductService.GetProductById(id).ConfigureAwait(false);
+                return Ok(Product);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
+        }
+        [HttpGet("{categoryName}")]
+        public async Task<IActionResult> GetProductByCategoryName(string categoryName)
+        {
+            try
+            {
+                var Product = await _ProductService.GetAllProducts().ConfigureAwait(false);
                 return Ok(Product);
             }
             catch (Exception ex)

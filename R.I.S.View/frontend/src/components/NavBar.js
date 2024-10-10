@@ -15,7 +15,7 @@ const NavBar = () => {
                     <Nav.Link onClick={() => navigate("/landing")} className="child">ГОЛОВНА</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
-        </Navbar>
+ та       </Navbar>
     );
 };
 
