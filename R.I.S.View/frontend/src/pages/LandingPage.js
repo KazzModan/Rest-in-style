@@ -8,7 +8,7 @@ const LandingPage = () => {
 
     return (
         <div className="bac">
-            <div className="background"></div>
+            <div className="backgroundLanding"></div>
             <div className="card-grid">
                 <Card image={kitty} onClick={() => navigate("/tombs")}>
                 </Card>

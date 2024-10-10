@@ -1,9 +1,8 @@
 $background-image: "../images/back.webp";
-@import "~bootstrap/scss/bootstrap";
 
 .products-container {
   padding: 2rem;
-
+  background-color: #f595c2;
   .row {
     justify-content: center;
   }
@@ -13,13 +12,6 @@ $background-image: "../images/back.webp";
   }
 }
 .background {
-  background-image: url(#{$background-image});
-  background-size: cover;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0.5;
-  z-index: -1;
+  background-color: lightcoral;
+
 }
