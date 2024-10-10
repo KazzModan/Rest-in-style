@@ -422,3 +422,10 @@ FodyWeavers.xsd
 /R.I.S.View/frontend/README.md
 /R.I.S.View/frontend/.gitignore
 /.gitignore
+/R.I.S.BLL/bin/Debug/net8.0/R.I.S.BLL.pdb
+/R.I.S.BLL/bin/Debug/net8.0/R.I.S.BLL.dll
+/R.I.S.WebAPI/bin/Debug/net8.0/R.I.S.BLL.dll
+/R.I.S.WebAPI/bin/Debug/net8.0/R.I.S.WebAPI.dll
+/R.I.S.WebAPI/bin/Debug/net8.0/R.I.S.BLL.pdb
+/R.I.S.WebAPI/bin/Debug/net8.0/R.I.S.WebAPI.pdb
+/R.I.S.WebAPI/bin/Debug/net8.0/R.I.S.WebAPI.exe
