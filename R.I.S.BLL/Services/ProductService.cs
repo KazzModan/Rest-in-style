@@ -42,30 +42,24 @@ namespace R.I.S.BLL.Services
         {
             await _productRepository.Delete(id).ConfigureAwait(false);
         }
-        public async Task<ICollection<ProductDTO>> GetAllProducts(Expression<Func<Product, bool>> filter = null)
+        public async Task<ICollection<ProductDTO>> GetAllProducts(Expression<Func<ProductDTO, bool>> filter = null)
         {
             var products = await _productRepository.Get().ConfigureAwait(false);
-            if (filter == null)
+            var productDTOs = _mapper.Map<ICollection<ProductDTO>>(products);
+            foreach (var product in productDTOs)
             {
-                var productDTOs = _mapper.Map<ICollection<ProductDTO>>(products);
+                await MapInfo(product);
+            }
+            if (filter == null)
+                return productDTOs;
+            else
+            {
                 foreach (var product in productDTOs)
                 {
                     await MapInfo(product);
                 }
-                return productDTOs;
+                return productDTOs.Where(filter.Compile()).ToList();
             }
-            else
-            {
-                var filteredProducts = _mapper.Map<ICollection<ProductDTO>>(products.Where(filter.Compile()).ToList());
-
-                foreach (var product in filteredProducts)
-                {
-                    await MapInfo(product);
-                }
-
-                return filteredProducts;
-            }
-
         }
         public async Task<ProductDTO> GetProductById(Guid id)
         {

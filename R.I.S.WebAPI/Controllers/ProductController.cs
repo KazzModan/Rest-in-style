@@ -44,7 +44,7 @@ namespace R.I.S.WebAPI.Controllers
         {
             try
             {
-                var Product = await _ProductService.GetAllProducts().ConfigureAwait(false);
+                var Product = await _ProductService.GetAllProducts(e=> e.CtName == categoryName).ConfigureAwait(false);
                 return Ok(Product);
             }
             catch (Exception ex)
