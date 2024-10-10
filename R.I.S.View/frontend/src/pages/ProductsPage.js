@@ -21,14 +21,16 @@ const ProductsPage = () => {
     }, []);
 
     return (
-        products.map(product => (
-            <div className="card-container" key={product.id}>
-                <div className="cards">
-                    <ProductCard imagesrc={kitty} label={product.name} price={product.price} />
-                </div>
+        <div className="products-container">
+            <div className="background"></div>
+            <div className="row">
+                {products.map(product => (
+                    <div className="col-lg-2 col-md-3 col-sm-4" key={product.id}>
+                        <ProductCard imagesrc={kitty} label={product.name} price={product.price} />
+                    </div>
+                ))}
             </div>
-        ))
+        </div>
     );
-}
-
-export default ProductsPage;
+    }
+    export default ProductsPage;
