@@ -10,17 +10,17 @@ const LandingPage = () => {
         <div className="bac">
             <div className="backgroundLanding"></div>
             <div className="card-grid">
-                <Card image={kitty} onClick={() => navigate("/tombs")}>
+                <Card image={kitty} onClick={() => navigate("/products/tombs", {state: 'tombs'})}>
                 </Card>
-                <Card image={kitty} onClick={() => navigate("/crowns")}>
+                <Card image={kitty} onClick={() => navigate("/products", {state: 'crowns'})}>
                 </Card>
-                <Card image={kitty} onClick={() => navigate("/memorials")}>
+                <Card image={kitty} onClick={() => navigate("/products", {state: 'memorials'})}>
                 </Card>
-                <Card image={kitty} onClick={() => navigate("/ribbons")}>
+                <Card image={kitty} onClick={() => navigate("/products", {state: 'ribbons'})}>
                 </Card>
-                <Card image={kitty} onClick={() => navigate("/crosses")}>
+                <Card image={kitty} onClick={() => navigate("/products", {state: 'crosses'})}>
                 </Card>
-                <Card image={kitty} onClick={() => navigate("/others")}>
+                <Card image={kitty} onClick={() => navigate("/products", {state: 'others'})}>
                 </Card>
             </div>
         </div>
